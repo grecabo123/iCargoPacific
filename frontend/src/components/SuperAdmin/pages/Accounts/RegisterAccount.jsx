@@ -129,12 +129,13 @@ function RegisterAccount() {
 
         // files
         form.append('logofile',logofile.file);
-        form.append('nationalfile',nationalfile.file);
+        form.append('nationalfile',nationalfile.national);
 
         form.append('pickcity',pickcity);
         form.append('branchpick',branchpick);
         form.append('product_pick',product_pick);
         form.append('bookingenable',bookingenable);
+        form.append('user_fk',localStorage.getItem('auth_id'));
 
 
         axios.post(`/api/RegisterBusiness`,form).then(res => {
@@ -145,6 +146,10 @@ function RegisterAccount() {
                     detail: "Successfully",
                 });
                 document.getElementById('form').reset();
+                setCity([])
+                setbranchpick([])
+                setBooking([])
+                setProductType([])
             }
         }).catch((error) => {
             if(error.response.status === 500) {
@@ -156,12 +161,12 @@ function RegisterAccount() {
     return (
         <div className='container-fluid'>
             <Toast ref={toast} />
-            <Panel header="Register Account">
                 <div className="d-flex justify-content-end align-items-center mb-2">
                     <Button className='p-button-sm p-button-info' onClick={() => history.push(`/admin/accounts/business`)} label='Return Page' />
                 </div>
+            <Panel header="Register Account">
                 <div className="mt-2">
-                    <Panel header="Business Account Information">
+                    {/* <Panel header="Business Account Information"> */}
                         {
                             loading ? <Skeleton />
                                 :
@@ -171,7 +176,7 @@ function RegisterAccount() {
                                             <label htmlFor="" className="form-label">
                                                 <span className='text-danger'>*</span>Branch
                                             </label>
-                                            <Dropdown value={branchpick} showClear onChange={(e) => setbranchpick(e.value)} className='w-100 p-inputtext-sm' options={branch_list} filter placeholder='Choose Branch' />
+                                            <Dropdown value={branchpick}  onChange={(e) => setbranchpick(e.value)} className='w-100 p-inputtext-sm' options={branch_list} filter placeholder='Choose Branch' />
                                         </div>
                                         <div className="col-lg-4 mb-2">
                                             <label htmlFor="" className="form-label">
@@ -183,7 +188,7 @@ function RegisterAccount() {
                                             <label htmlFor="" className="form-label">
                                                 <span className='text-danger'>*</span>City
                                             </label>
-                                            <Dropdown value={pickcity} showClear onChange={(e) => setPick(e.value)} className='w-100 p-inputtext-sm' options={citylist} filter placeholder='Choose City' />
+                                            <Dropdown value={pickcity}  onChange={(e) => setPick(e.value)} className='w-100 p-inputtext-sm' options={citylist} filter placeholder='Choose City' />
                                         </div>
                                         <div className="col-lg-4 mb-2">
                                             <label htmlFor="" className="form-label">
@@ -219,7 +224,7 @@ function RegisterAccount() {
                                             <label htmlFor="" className="form-label">
                                                 Enable Booking Form
                                             </label>
-                                            <Dropdown value={bookingenable} showClear onChange={(e) => setBooking(e.value)} className='w-100 p-inputtext-sm' options={bool} placeholder='Pick' />
+                                            <Dropdown value={bookingenable}  onChange={(e) => setBooking(e.value)} className='w-100 p-inputtext-sm' options={bool} placeholder='Pick' />
                                         </div>
 
                                     </div>
@@ -260,7 +265,7 @@ function RegisterAccount() {
                                             <label htmlFor="" className="form-label">
                                                 Product Type
                                             </label>
-                                            <Dropdown value={product_pick} showClear onChange={(e) => setProductpick(e.value)} options={list_product} filter className='w-100 p-inputtext-sm' placeholder='Choose Product Type' />
+                                            <Dropdown value={product_pick}  onChange={(e) => setProductpick(e.value)} options={list_product} filter className='w-100 p-inputtext-sm' placeholder='Choose Product Type' />
                                         </div>
                                         <div className="col-lg-4 mb-2">
                                             <label htmlFor="" className="form-label">
@@ -347,7 +352,7 @@ function RegisterAccount() {
                                     </div>
                                 </form>
                         }
-                    </Panel>
+                    {/* </Panel> */}
                 </div>
             </Panel>
         </div>

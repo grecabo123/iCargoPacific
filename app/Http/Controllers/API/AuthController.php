@@ -36,9 +36,9 @@ class AuthController extends Controller
                     else if($user->role == 2){
                         $token = $user->createToken($user->email.'_STAFF',['server:staff'])->plainTextToken;
                     }
-                    // Accountant
-                    else if($user->role == 3){
-                        $token = $user->createToken($user->email.'_Accountant',['server:Accountant'])->plainTextToken;
+                    // Business
+                    else if($user->role == 5){
+                        $token = $user->createToken($user->email.'_Business',['server:Business'])->plainTextToken;
                     }
                     else{
                         // user

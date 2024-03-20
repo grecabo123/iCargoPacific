@@ -7,8 +7,9 @@ import { PrimeIcons } from 'primereact/api'
 import { Avatar } from 'primereact/avatar'
 import { Menu } from 'primereact/menu'
 import SuperAdminRoutes from '../../routes/SuperAdminRoutes'
-import {FcBookmark, FcBriefcase, FcBusiness, FcFile, FcFolder, FcHome, FcPlus} from 'react-icons/fc'
+import {FcBookmark, FcBriefcase, FcBusiness, FcFile, FcFolder, FcHome, FcOpenedFolder, FcPlus} from 'react-icons/fc'
 import {GoReport} from 'react-icons/go'
+import logo from '../../assets/logo/icargo.png'
 import {FaCartArrowDown, FaCodeBranch, FaDesktop, FaHome, FaMoneyBill, FaUsers} from 'react-icons/fa'
 
 function Admin() {
@@ -63,6 +64,9 @@ function Admin() {
                 <div className="sidebar-brand d-none d-md-flex">
                     <h5 className='text-center'>ADMINISTRATOR </h5>
                 </div>
+                {/* <div className="text-center mt-4">
+                    <img src={logo} alt="" width={100} />
+                </div> */}
                 <ul className="sidebar-nav" data-coreui="navigation" data-simplebar="">
                     <li className="nav-item"><a className="nav-link fs-5">
                     </a></li>
@@ -78,8 +82,8 @@ function Admin() {
                     </li>
                     <div className="collapse" id='collapseOne'>
                         <li className="nav-item"><Link className="nav-link" to="/admin/booking/form"><FcFile className='nav-icon' /> Form</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/admin/booking/list"><FcOpenedFolder className='nav-icon' />List of Booking</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/admin/booking/view"><FaCartArrowDown className='nav-icon' />View Orders</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/admin/booking/orders"><FcFolder className='nav-icon' />My Orders</Link></li>
                     </div>
 
                     <li className="nav-group"><a className="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#payment">
@@ -139,7 +143,7 @@ function Admin() {
                         <Avatar className='text-dark fw-bold' onClick={(event) => menu.current.toggle(event)} aria-controls="popup_menu" aria-haspopup shape='square' label='A' size='large' />
                     </>
                 } />
-                <div className="mt-5">
+                <div className="mt-2">
                     <Switch>
                         {
                             SuperAdminRoutes.map((routes, id) => {

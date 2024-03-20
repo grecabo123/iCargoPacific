@@ -9071,7 +9071,8 @@ html:not([dir=rtl]) .header-nav {
 
 .sidebar {
   --cui-sidebar-width: 16rem;
-  --cui-sidebar-bg: #19191B;
+  /* --cui-sidebar-bg: #19191B; */
+  --cui-sidebar-bg: #1F4B87;
   --cui-sidebar-padding-x: 0;
   --cui-sidebar-padding-y: 0;
   --cui-sidebar-color: rgba(255, 255, 255, 0.87);

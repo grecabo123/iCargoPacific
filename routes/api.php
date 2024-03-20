@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ActivityLogsController;
+use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\BranchController;
 use App\Http\Controllers\API\BusinessController;
 use App\Http\Controllers\API\FetchAllController;
@@ -25,7 +26,7 @@ Route::delete('RemoveBranch/{id}',[BranchController::class, 'RemoveBranch']);
 
 // Fetch for Register Busienss
 Route::get('FetchAll',[FetchAllController::class, 'FetchAll']);
-
+Route::get('BookFetchData',[FetchAllController::class,'BookFetchData']);
 
 // Logs
 Route::get('Logs/{id}',[ActivityLogsController::class, 'Logs']);
@@ -46,9 +47,13 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::put('Deactivate',[ProductTypeController::class, 'Deactivate']);
 
 
+    // Bookinf form
+    Route::post('RegisterBook',[BookingController::class, 'RegisterBook']);
+    Route::get('BookingList',[BookingController::class,'BookingList']);
 
     // Register Business
     Route::post('RegisterBusiness',[BusinessController::class,'RegisterBusiness']);
+    Route::get('BusinessAccount',[BusinessController::class, 'BusinessAccount']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
